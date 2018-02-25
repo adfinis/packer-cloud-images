@@ -1,0 +1,43 @@
+{
+  "description": "Minimal LVM-based CentOS 7.4 image for different clouds.",
+  "builders":
+  [
+    {
+      "type": "qemu",
+      "iso_url": "https://pkg.adfinis-sygroup.ch/centos/7.4.1708/isos/x86_64/CentOS-7-x86_64-NetInstall-1708.iso",
+      "iso_checksum": "fe3d960cce4d2c1c9f1b66817fe87cc0ee1a1c6c5dd126204cb5c33d51a45620",
+      "iso_checksum_type": "sha256",
+      "output_directory": "images/centos74",
+      "shutdown_command": "shutdown -P now",
+      "disk_size": 10240,
+      "format": "qcow2",
+      "headless": false,
+      "accelerator": "kvm",
+      "qemuargs": [
+        [ "-m", "1024M" ]
+      ],
+      "http_directory": "provisioning",
+      "http_port_min": 8000,
+      "http_port_max": 9000,
+      "ssh_host_port_min": 2200,
+      "ssh_host_port_max": 2300,
+      "ssh_username": "root",
+      "ssh_password": "iamgroot",
+      "ssh_port": 22,
+      "ssh_timeout": "30m",
+      "vm_name": "packer-centos74",
+      "net_device": "virtio-net",
+      "disk_interface": "virtio",
+      "boot_wait": "5s",
+      "boot_command": [
+        "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos7.4-ks.cfg<enter><wait>"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "ansible",
+      "playbook_file": "./site.yml"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+images
+packer_cache
+*.swp
+*.retry
