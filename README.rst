@@ -11,8 +11,8 @@ Cloud Linux Images
 
 Build your own AWS and Azure Linux images from scratch within minutes.
 
-Feautures
-=========
+Features
+========
 Most cloud providers like AWS or Azure provide prebuilt images for different
 Linux distributions through a marketplace. The quality and usability differs
 from image to image. Therefore it makes sense to build your own images to
