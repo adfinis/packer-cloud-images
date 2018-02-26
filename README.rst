@@ -18,9 +18,8 @@ Linux distributions through a marketplace. The quality and usability differs
 from image to image. Therefore it makes sense to build your own images to
 provide VMs tailored to your use case.
 
-This repository makes use of Packer_ and Ansible_ to provide cloud agnostic
-images for a few Linux distributions. These images should fullfil the following
-requirements:
+This repository makes use of Packer_ and Ansible_ to build custom images for a
+few Linux distributions. These images should fullfil the following requirements:
 
 * Minimal installation
 * Tailored to the corresponding cloud
@@ -31,23 +30,25 @@ from them.
 
 Requirements
 ============
-Ensure the following requirements installed:
+Ensure the following requirements are installed:
 
 * Ansible_
 * Packer_
 * QEMU / KVM
+* cloud-linux-images_ Ansible role
 
 .. _Ansible: http://docs.ansible.com/ansible/latest/intro_installation.html
 .. _Packer: https://www.packer.io/intro/getting-started/install.html
+.. _cloud-linux-images: https://galaxy.ansible.com/karras/cloud-linux-images/
 
 Installation
 ============
 Follow the steps below to build the images:
 
-```
-$ ansible-galaxy install karras.cloud-linux-images
-$ packer-io build centos7.4-qemu.json
-```
+.. code:: shell
+
+       $ ansible-galaxy install karras.cloud-linux-images
+       $ packer-io build centos7.4-qemu.json
 
 Pick any of the available JSON files to build an image for the required
 distribution.
