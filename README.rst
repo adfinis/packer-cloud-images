@@ -1,22 +1,23 @@
-==================
-Cloud Linux Images
-==================
+===================
+Packer Cloud Images
+===================
 
 |Travis| |License|
 
-.. |Travis| image:: https://img.shields.io/travis/karras/cloud-linux-images.svg?style=flat-square
-   :target: https://travis-ci.org/karras/ansible-cloud-images
-.. |License| image:: https://img.shields.io/github/license/karras/cloud-linux-images.svg?style=flat-square
+.. |Travis| image:: https://img.shields.io/travis/adfinis-sygroup/packer-cloud-images.svg?style=flat-square
+   :target: https://travis-ci.org/adfinis-sygroup/packer-cloud-images
+.. |License| image:: https://img.shields.io/github/license/adfinis-sygroup/packer-cloud-images.svg?style=flat-square
    :target: LICENSE
 
-Build your own AWS and Azure Linux images from scratch within minutes.
+Build your own AWS and Azure Packer images from scratch within minutes.
 
 Features
 ========
 Most cloud providers like AWS or Azure provide prebuilt images for different
 Linux distributions through a marketplace. The quality and usability differs
 from image to image. Therefore it makes sense to build your own images to
-provide VMs tailored to your use case.
+provide VMs tailored to your use case. In addition it gives you full control
+how and when the images are updated.
 
 This repository makes use of Packer_ and Ansible_ to build custom images for a
 few Linux distributions. These images should fullfil the following requirements:
@@ -35,11 +36,11 @@ Ensure the following requirements are installed:
 * Ansible_
 * Packer_
 * QEMU / KVM
-* cloud-linux-images_ Ansible role
+* azure_linux_image_ Ansible role
 
 .. _Ansible: http://docs.ansible.com/ansible/latest/intro_installation.html
 .. _Packer: https://www.packer.io/intro/getting-started/install.html
-.. _cloud-linux-images: https://galaxy.ansible.com/karras/cloud-linux-images/
+.. _azure_linux_image: https://galaxy.ansible.com/adfinis-sygroup/azure_linux_image
 
 Installation
 ============
@@ -47,8 +48,8 @@ Follow the steps below to build the images:
 
 .. code:: shell
 
-       $ ansible-galaxy install karras.cloud-linux-images
-       $ packer-io build centos7.4-qemu.json
+       $ ansible-galaxy install -r requirements.yml
+       $ packer-io build centos7.5-lvm-qemu.json
 
 Pick any of the available JSON files to build an image for the required
 distribution.
