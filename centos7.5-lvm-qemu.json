@@ -37,7 +37,7 @@
   "provisioners": [
     {
       "type": "ansible",
-      "playbook_file": "./site.yml"
+      "playbook_file": "./azure_playbook.yml"
     }
   ]
 }
