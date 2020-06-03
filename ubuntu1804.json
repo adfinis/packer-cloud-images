@@ -1,0 +1,51 @@
+{
+    "description": "Ubuntu 18.04 Image",
+    "_comment": "Build with 'packer build ubuntu1804.json",
+    "builders": [{
+        "type": "qemu",
+        "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.4-server-amd64.iso",
+        "iso_checksum": "e2ecdace33c939527cbc9e8d23576381c493b071107207d2040af72595f8990b",
+        "iso_checksum_type": "sha256",
+        "boot_command": [
+            "<esc><wait>",
+            "<esc><wait>",
+            "<enter><wait>",
+            "/install/vmlinuz<wait>",
+            " initrd=/install/initrd.gz",
+            " auto-install/enable=true",
+            " debconf/priority=critical",
+            " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ubuntu1804_preseed.cfg<wait>",
+            " --wait",
+            "<enter><wait>"
+        ],
+        "boot_wait": "10s",
+        "qemuargs": [
+            [
+                "-m",
+                "512M"
+            ],
+            [
+                "-display",
+                "none"
+            ]
+        ],
+        "accelerator": "kvm",
+        "format": "qcow2",
+        "shutdown_command": "echo 'rootpw' | sudo -S shutdown -P now",
+        "ssh_username": "installer",
+        "ssh_password": "rootpw",
+        "http_directory": "provisioning",
+        "http_port_min": 8000,
+        "http_port_max": 9000,
+        "ssh_host_port_min": 2200,
+        "ssh_host_port_max": 2300,
+        "ssh_port": 22,
+        "ssh_timeout": "30m"
+    }],
+    "provisioners": [{
+        "type": "shell",
+        "inline": [
+            "echo 'rootpw' | sudo -S apt update && sudo -S apt dist-upgrade -y && sudo -S apt autoremove -y"
+        ]
+    }]
+}
