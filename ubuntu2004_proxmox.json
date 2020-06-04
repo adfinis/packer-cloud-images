@@ -50,7 +50,7 @@
         {
             "type": "shell",
             "inline": [
-                "echo 'rootpw' | sudo -S apt update && sudo -S apt dist-upgrade -y && sudo -S DEBIAN_FRONTEND=noninteractive apt install freeipa-client -yq && sudo -S apt autoremove -y"
+                "echo 'rootpw' | sudo -S apt update && sudo -S apt dist-upgrade -y && sudo -S apt autoremove -y"
             ]
         }
     ]

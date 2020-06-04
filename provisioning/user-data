@@ -3,8 +3,7 @@ autoinstall:
     version: 1
     locale: en_US
     keyboard:
-        layout: de
-        variant: ch
+        layout: us
     identity:
         hostname: ubuntu2004-packer
         username: installer
