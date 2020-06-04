@@ -1,0 +1,17 @@
+#cloudinit
+#personalizatiom
+locale: de_CH.utf8
+timezone: Europe/Berlin
+package_upgrade: true
+package_reboot_if_required: true
+
+hostname: default-vm
+
+runcmd:
+    #firewall
+    - ufw default deny incoming
+    - ufw default allow outgoing
+    - ufw allow 22/tcp
+    - ufw enable
+    #ipa
+    - /usr/sbin/ipa-client-install --domain=RACKFARM --enable-dns-update --mkhomedir -w %secret% --realm=RACKFARM --server %SERVER% --unattended
