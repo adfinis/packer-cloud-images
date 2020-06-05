@@ -1,0 +1,18 @@
+#cloud-config
+autoinstall:
+    version: 1
+    locale: en_US
+    keyboard:
+        layout: us
+    identity:
+        hostname: ubuntu2004-packer
+        username: installer
+        password: '$6$c8af95a9b3cdfbe9$owrN.6AT.TB/mSUnUz/yLIAbezlyPXG4N2ewmUa3WLZhnHOoWPtILvw1EhnxmFn4pDc3L.pMJML0VV6drYojS.'
+    ssh:
+        install-server: yes
+        allow-pw: yes
+    storage:
+        layout:
+            name: direct
+    packages:
+        - qemu-guest-agent
